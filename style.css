@@ -13,22 +13,42 @@
 
 body {
     font-family: 'Outfit', sans-serif;
-    /* Beautiful vibrant gradient background */
     background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--dark);
-    overflow: hidden; /* Hide overflowing confetti */
+    overflow: hidden;
+}
+
+.page {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.page.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .container {
     padding: 20px;
     z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-/* Glassmorphism card effect */
 .card {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(15px);
@@ -36,6 +56,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 24px;
     padding: 40px;
+    width: 100%;
     max-width: 450px;
     text-align: center;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
@@ -48,6 +69,54 @@ body {
     box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.3);
 }
 
+/* Login specific styles */
+.lock-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.pin-input-group {
+    margin: 25px 0;
+    position: relative;
+}
+
+.pin-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.7);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.pin-input:focus {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+.error-message {
+    color: #ff4757;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-weight: 600;
+}
+
+.error-message.visible {
+    opacity: 1;
+}
+
+/* Birthday Card styles */
 .img-container {
     width: 150px;
     height: 150px;
@@ -59,7 +128,6 @@ body {
     align-items: center;
     font-size: 4rem;
     box-shadow: inset 0 4px 10px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.1);
-    /* Subtle float animation */
     animation: float 4s ease-in-out infinite;
     overflow: hidden;
 }
@@ -84,7 +152,13 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Gradient text for the name */
+h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
 .highlight {
     color: var(--primary);
     background: linear-gradient(to right, #ff6b6b, #ff8e8b);
@@ -101,7 +175,6 @@ h1 {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Premium button design */
 button {
     background: linear-gradient(135deg, var(--primary) 0%, #ff8e8b 100%);
     color: white;
@@ -114,6 +187,7 @@ button {
     cursor: pointer;
     box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 button:hover {
@@ -125,11 +199,24 @@ button:active {
     transform: scale(0.98);
 }
 
-/* Confetti classes */
+/* Error Shake Animation */
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Confetti */
 .confetti {
     position: absolute;
     width: 10px;
     height: 10px;
     opacity: 0;
     pointer-events: none;
+    z-index: 100;
 }

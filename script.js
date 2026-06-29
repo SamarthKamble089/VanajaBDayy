@@ -1,20 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('celebrateBtn');
+    // ==========================================
+    // Set the secret PIN here!
+    // ==========================================
+    const CORRECT_PIN = "1234";
+    
+    // --- LOGIN LOGIC ---
+    const loginPage = document.getElementById('loginPage');
+    const birthdayPage = document.getElementById('birthdayPage');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const pinInput = document.getElementById('pinInput');
+    const errorMessage = document.getElementById('errorMessage');
+    const loginCard = loginPage.querySelector('.card');
+
+    function checkPin() {
+        if (pinInput.value === CORRECT_PIN) {
+            // Success! Fade out login and show birthday card
+            loginPage.classList.remove('active');
+            setTimeout(() => {
+                birthdayPage.classList.add('active');
+                // Optional: Throw some confetti immediately upon entering
+                for (let i = 0; i < 40; i++) {
+                    createConfetti();
+                }
+            }, 50);
+        } else {
+            // Fail! Show error message and shake the card
+            errorMessage.classList.add('visible');
+            loginCard.classList.add('shake');
+            pinInput.value = ''; // clear input
+            
+            // Remove shake class so it can happen again next time
+            setTimeout(() => {
+                loginCard.classList.remove('shake');
+            }, 500);
+            
+            // Hide error message after a few seconds
+            setTimeout(() => {
+                errorMessage.classList.remove('visible');
+            }, 3000);
+        }
+    }
+
+    unlockBtn.addEventListener('click', checkPin);
+    
+    // Allow pressing "Enter" on keyboard to submit PIN
+    pinInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            checkPin();
+        }
+    });
+
+
+    // --- CONFETTI LOGIC ---
+    const celebrateBtn = document.getElementById('celebrateBtn');
     const container = document.getElementById('confetti-container');
 
     // Vibrant confetti colors
     const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff9f43', '#54a0ff', '#e056fd'];
 
-    btn.addEventListener('click', () => {
+    celebrateBtn.addEventListener('click', () => {
         // Create confetti burst (100 pieces)
         for (let i = 0; i < 100; i++) {
             createConfetti();
         }
         
         // Button interaction effect
-        btn.textContent = "Yay! 🎊";
+        celebrateBtn.textContent = "Yay! 🎊";
         setTimeout(() => {
-            btn.textContent = "Let's Celebrate! 🎉";
+            celebrateBtn.textContent = "Let's Celebrate! 🎉";
         }, 2000);
     });
 
