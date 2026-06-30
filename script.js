@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // Set the secret PIN here!
     // ==========================================
-    const CORRECT_PIN = "2553";
+    const CORRECT_PIN = "12072007";
 
     // --- LOGIN LOGIC ---
     const loginPage = document.getElementById('loginPage');
