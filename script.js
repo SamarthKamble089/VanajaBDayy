@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // Set the secret PIN here!
     // ==========================================
-    const CORRECT_PIN = "1234";
-    
+    const CORRECT_PIN = "2553";
+
     // --- LOGIN LOGIC ---
     const loginPage = document.getElementById('loginPage');
     const birthdayPage = document.getElementById('birthdayPage');
@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessage.classList.add('visible');
             loginCard.classList.add('shake');
             pinInput.value = ''; // clear input
-            
+
             // Remove shake class so it can happen again next time
             setTimeout(() => {
                 loginCard.classList.remove('shake');
             }, 500);
-            
+
             // Hide error message after a few seconds
             setTimeout(() => {
                 errorMessage.classList.remove('visible');
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     unlockBtn.addEventListener('click', checkPin);
-    
+
     // Allow pressing "Enter" on keyboard to submit PIN
     pinInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < 100; i++) {
             createConfetti();
         }
-        
+
         // Button interaction effect
         celebrateBtn.textContent = "Yay! 🎊";
         setTimeout(() => {
@@ -74,27 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
     function createConfetti() {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
-        
+
         // Random properties for each confetti piece
         const color = colors[Math.floor(Math.random() * colors.length)];
         const left = Math.random() * 100 + 'vw';
         const animationDuration = Math.random() * 3 + 2 + 's';
         const delay = Math.random() * 0.5 + 's';
-        
+
         confetti.style.backgroundColor = color;
         confetti.style.left = left;
         confetti.style.top = '-10px';
-        
+
         // Randomly make some confetti circular
         if (Math.random() > 0.5) {
             confetti.style.borderRadius = '50%';
         }
-        
+
         // Generate dynamic keyframes for random falling paths
         const animationName = `fall-${Math.random().toString(36).substr(2, 9)}`;
         const endTranslateY = window.innerHeight + 100;
         const randomX = (Math.random() - 0.5) * 300; // Spread horizontally
-        
+
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes ${animationName} {
@@ -109,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         `;
         document.head.appendChild(style);
-        
+
         confetti.style.animation = `${animationName} ${animationDuration} ease-in ${delay} forwards`;
-        
+
         container.appendChild(confetti);
-        
+
         // Cleanup DOM after animation completes
         setTimeout(() => {
             confetti.remove();
