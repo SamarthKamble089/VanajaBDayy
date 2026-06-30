@@ -1,0 +1,15 @@
+/* main.css */
+
+#birthdayPage {
+    justify-content: flex-start;
+    padding-top: 50px;
+}
+
+#birthdayPage h1 {
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    font-size: 4rem;
+    color: #d35400;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
