@@ -45,5 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- MAIN PAGE LOGIC ---
+    const imageCols = document.querySelectorAll('.image-col');
+    if (imageCols.length > 0) {
+        imageCols.forEach(col => {
+            col.addEventListener('click', () => {
+                // Toggle 'active' class on the parent '.row'
+                const row = col.closest('.row');
+                if (row) {
+                    row.classList.toggle('active');
+                }
+            });
+        });
+    }
+
     // --- CONFETTI LOGIC REMOVED ---
 });

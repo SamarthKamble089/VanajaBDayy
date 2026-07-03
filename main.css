@@ -37,9 +37,9 @@ body {
 .row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 80px;
-    gap: 40px;
+    gap: 0;
 }
 
 /* Reverse the order for alternating rows */
@@ -48,23 +48,56 @@ body {
 }
 
 .image-col {
-    flex: 1;
+    width: 60%;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .image-col img {
     width: 100%;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    object-fit: cover;
-    max-height: 400px;
+    height: auto;
+    display: block;
 }
 
 .text-col {
-    flex: 1;
+    width: 60%;
+    opacity: 0;
+    margin-left: -60%;
+    z-index: 1;
+    transform: scale(0.9);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
     background: rgba(255, 255, 255, 0.85);
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.row.reverse .text-col {
+    margin-left: 0;
+    margin-right: -60%;
+}
+
+/* Active States */
+.row.active .image-col {
+    width: 45%;
+}
+
+.row.active .text-col {
+    width: 45%;
+    opacity: 1;
+    margin-left: 5%;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.row.reverse.active .text-col {
+    margin-left: 0;
+    margin-right: 5%;
 }
 
 .text-col h2 {
@@ -83,5 +116,34 @@ body {
 @media (max-width: 768px) {
     .row, .row.reverse {
         flex-direction: column;
+    }
+    
+    .image-col {
+        width: 100%;
+    }
+    
+    .text-col {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+    
+    .row.active .image-col {
+        width: 100%;
+    }
+    
+    .row.active .text-col {
+        width: 100%;
+        max-height: 1000px;
+        opacity: 1;
+        margin-top: 20px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
