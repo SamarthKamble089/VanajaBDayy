@@ -255,3 +255,16 @@ button:active {
     pointer-events: none;
     z-index: 100;
 }
+
+#poemUnlockedView {
+    background: url('images/PoemBG.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 23px; /* Matches the parent card's rounded corners */
+    padding: 40px; /* Restores inner padding for the content */
+    margin: -40px; /* Counteracts the parent card's 40px padding to remove the gap */
+}
+
+#poemUnlockedView h2 {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
